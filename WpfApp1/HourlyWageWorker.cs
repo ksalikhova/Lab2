@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-    internal class ComissionWageWorker : Worker
+    internal class HourlyWageWorker : Worker
     {
-       
+
     }
 }

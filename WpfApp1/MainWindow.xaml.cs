@@ -21,23 +21,53 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         public string hourlyName;
-        public string gender;
-        public string normalSalary;
-        public string overtimeSalary;
-        public string standartOfWorkingHours;
+        public string hourlyGender;
+        public int normalSalary;
+        public int overtimeSalary;
+        public int standartOfWorkingHours;
 
-        
+        public string comissionName;
+        public string comissionGender;
+        public int salary;
+        public int percent;
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
+        private void btnAddComissionWorker_Click(object sender, RoutedEventArgs e)
+        {
+            comissionName = comissionNameBox.Text;
+            comissionGender = ComissionGenderComboBox.Text;
+            salary = NumberCheck(SalaryBox);
+            percent = NumberCheck(percentBox);
+        }
+
         private void btnAddHourlyWorker_Click(object sender, RoutedEventArgs e)
         {
             hourlyName = hourlyNameBox.Text;
-            gender
-            
+            hourlyGender = HourlyGenderComboBox.Text;
+            normalSalary = NumberCheck(normalSalaryBox);
+            overtimeSalary = NumberCheck(overtimeSalaryBox);
+            standartOfWorkingHours = NumberCheck(standartHoursBox);
+        }
+
+        private int NumberCheck(TextBox textBox)
+        {
+            foreach (var symbol in textBox.Text)
+            {
+                if (!char.IsDigit(symbol))
+                {
+                    MessageBox.Show("Неправильный ввод");
+                    return 1;
+                }
+            }
+
+            if (Convert.ToInt32(textBox.Text) != 0) return Convert.ToInt32(textBox.Text);
+
+            MessageBox.Show("Неправильный ввод");
+            return 1;
         }
     }
 }

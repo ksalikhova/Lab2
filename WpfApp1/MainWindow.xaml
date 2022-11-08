@@ -15,23 +15,26 @@
         <WrapPanel x:Name="wrapPanel"    Orientation="Vertical" Background="Gray" HorizontalAlignment="Left" Height="245" Margin="45,43,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="300">
             <StackPanel Orientation="Horizontal">
                 <Label x:Name="lbl" Content="Имя" Width="168" VerticalAlignment="Center"/>
-                <TextBox x:Name="hourlyNameBox" TextWrapping="Wrap" Text="TextBox" Width="120" Height="21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox x:Name="hourlyNameBox" TextWrapping="Wrap" Width="120" Height="21" VerticalAlignment="Center" HorizontalAlignment="Center" TextChanged="hourlyNameBox_TextChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <Label Content="Пол"     RenderTransformOrigin="-4.869,-0.076" Width="168"/>
-                <ComboBox     Width="91"/>
+                <ComboBox  Name="HourlyGenderComboBox"   Width="120" SelectionChanged="HourlyGenderComboBox_SelectionChanged">
+                    <Button Content="Female" Foreground="Black" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" IsEnabled="False"/>
+                    <Button Content="Male" Foreground="Black" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" IsEnabled="False"/>
+                </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
                 <Label Content="Зарплата" Width="169"    />
-                <TextBox x:Name="normalSalaryBox"   TextWrapping="Wrap" Text="TextBox"  Width="120" RenderTransformOrigin="1.35,0.559"/>
+                <TextBox x:Name="normalSalaryBox"   TextWrapping="Wrap"  Width="120" RenderTransformOrigin="1.35,0.559"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
                 <Label Content="Зарплата за переработку"    VerticalAlignment="Top" Width="169"/>
-                <TextBox x:Name="overtimeSalaryBox"    TextWrapping="Wrap" Text="TextBox"  Width="120" RenderTransformOrigin="1.35,0.559"/>
+                <TextBox x:Name="overtimeSalaryBox"    TextWrapping="Wrap"  Width="120" RenderTransformOrigin="1.35,0.559"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
                 <Label Content="Норма часов"     RenderTransformOrigin="0.416,4.393" Width="170"/>
-                <TextBox x:Name="standartHoursBox"    TextWrapping="Wrap" Text="TextBox" Width="120" RenderTransformOrigin="1.35,0.559"/>
+                <TextBox x:Name="standartHoursBox"    TextWrapping="Wrap" Width="120" RenderTransformOrigin="1.35,0.559"/>
             </StackPanel>
             <Button Click="btnAddHourlyWorker_Click" x:Name="btnAddHourlyWorker" Content="Добавить" Width="108" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0"  />
         </WrapPanel>
@@ -39,21 +42,24 @@
         <WrapPanel    Orientation="Vertical" Background="Gray" HorizontalAlignment="Left" Height="245" Grid.RowSpan="2" VerticalAlignment="Top" Width="300" Margin="45,320,0,0">
             <StackPanel Orientation="Horizontal">
                 <Label x:Name="lbl1" Content="Имя" Width="168" VerticalAlignment="Center"/>
-                <TextBox x:Name="comissionNameBox" TextWrapping="Wrap" Text="TextBox" Width="120" Height="21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <TextBox x:Name="comissionNameBox" TextWrapping="Wrap" Width="120" Height="21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <Label Content="Пол"     RenderTransformOrigin="-4.869,-0.076" Width="168"/>
-                <ComboBox     Width="91"/>
+                <ComboBox Name="ComissionGenderComboBox"   Width="120">
+                    <Button Content="Female" Foreground="Black" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" IsEnabled="False"/>
+                    <Button Content="Male" Foreground="Black" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" IsEnabled="False"/>
+                </ComboBox>
             </StackPanel>
             <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
                 <Label Content="Зарплата" Width="169"    />
-                <TextBox x:Name="SalaryBox"   TextWrapping="Wrap" Text="TextBox"  Width="120" RenderTransformOrigin="1.35,0.559"/>
+                <TextBox x:Name="SalaryBox"   TextWrapping="Wrap" Width="120" RenderTransformOrigin="1.35,0.559"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
                 <Label Content="Процент от продаж"     RenderTransformOrigin="0.416,4.393" Width="170"/>
-                <TextBox x:Name="percentBox"    TextWrapping="Wrap" Text="TextBox" Width="120" RenderTransformOrigin="1.35,0.559"/>
+                <TextBox x:Name="percentBox"    TextWrapping="Wrap" Width="120" RenderTransformOrigin="1.35,0.559"/>
             </StackPanel>
-            <Button x:Name="btnAddComissionWorker" Content="Добавить" Width="108" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0"  />
+            <Button Click="btnAddComissionWorker_Click" x:Name="btnAddComissionWorker" Content="Добавить" Width="108" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0"  />
         </WrapPanel>
 
         <WrapPanel    Orientation="Vertical" Background="Gray" HorizontalAlignment="Left" Height="98" Grid.RowSpan="2" VerticalAlignment="Top" Width="300" Margin="45,600,0,0">
