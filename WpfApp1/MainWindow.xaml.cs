@@ -20,9 +20,24 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string hourlyName;
+        public string gender;
+        public string normalSalary;
+        public string overtimeSalary;
+        public string standartOfWorkingHours;
+
+        
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void btnAddHourlyWorker_Click(object sender, RoutedEventArgs e)
+        {
+            hourlyName = hourlyNameBox.Text;
+            gender
+            
         }
     }
 }

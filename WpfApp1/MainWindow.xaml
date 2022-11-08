@@ -5,8 +5,67 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" WindowState="Maximized" Width ="1366" Height="768">
+
+    <Grid Margin="-31,-34,-71,-115">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <WrapPanel x:Name="wrapPanel"    Orientation="Vertical" Background="Gray" HorizontalAlignment="Left" Height="245" Margin="45,43,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="300">
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="lbl" Content="Имя" Width="168" VerticalAlignment="Center"/>
+                <TextBox x:Name="hourlyNameBox" TextWrapping="Wrap" Text="TextBox" Width="120" Height="21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Пол"     RenderTransformOrigin="-4.869,-0.076" Width="168"/>
+                <ComboBox     Width="91"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
+                <Label Content="Зарплата" Width="169"    />
+                <TextBox x:Name="normalSalaryBox"   TextWrapping="Wrap" Text="TextBox"  Width="120" RenderTransformOrigin="1.35,0.559"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
+                <Label Content="Зарплата за переработку"    VerticalAlignment="Top" Width="169"/>
+                <TextBox x:Name="overtimeSalaryBox"    TextWrapping="Wrap" Text="TextBox"  Width="120" RenderTransformOrigin="1.35,0.559"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
+                <Label Content="Норма часов"     RenderTransformOrigin="0.416,4.393" Width="170"/>
+                <TextBox x:Name="standartHoursBox"    TextWrapping="Wrap" Text="TextBox" Width="120" RenderTransformOrigin="1.35,0.559"/>
+            </StackPanel>
+            <Button Click="btnAddHourlyWorker_Click" x:Name="btnAddHourlyWorker" Content="Добавить" Width="108" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0"  />
+        </WrapPanel>
+
+        <WrapPanel    Orientation="Vertical" Background="Gray" HorizontalAlignment="Left" Height="245" Grid.RowSpan="2" VerticalAlignment="Top" Width="300" Margin="45,320,0,0">
+            <StackPanel Orientation="Horizontal">
+                <Label x:Name="lbl1" Content="Имя" Width="168" VerticalAlignment="Center"/>
+                <TextBox x:Name="comissionNameBox" TextWrapping="Wrap" Text="TextBox" Width="120" Height="21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <Label Content="Пол"     RenderTransformOrigin="-4.869,-0.076" Width="168"/>
+                <ComboBox     Width="91"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
+                <Label Content="Зарплата" Width="169"    />
+                <TextBox x:Name="SalaryBox"   TextWrapping="Wrap" Text="TextBox"  Width="120" RenderTransformOrigin="1.35,0.559"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"  Margin="0,10,0,0">
+                <Label Content="Процент от продаж"     RenderTransformOrigin="0.416,4.393" Width="170"/>
+                <TextBox x:Name="percentBox"    TextWrapping="Wrap" Text="TextBox" Width="120" RenderTransformOrigin="1.35,0.559"/>
+            </StackPanel>
+            <Button x:Name="btnAddComissionWorker" Content="Добавить" Width="108" Height="29" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,30,0,0"  />
+        </WrapPanel>
+
+        <WrapPanel    Orientation="Vertical" Background="Gray" HorizontalAlignment="Left" Height="98" Grid.RowSpan="2" VerticalAlignment="Top" Width="300" Margin="45,600,0,0">
+            <StackPanel Orientation="Horizontal" Height="52">
+                <Label x:Name="fireName" Content="Имя" Width="168" VerticalAlignment="Center"/>
+                <TextBox x:Name="fireNameBox" TextWrapping="Wrap" Text="TextBox" Width="120" Height="21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </StackPanel>
+            <Button x:Name="btnFireComissionWorker" Content="Уволить" Width="108" Height="30"  />
+        </WrapPanel>
+        <DataGrid Grid.RowSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="369,119,612,203"/>
+        <DataGrid Grid.RowSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="874,119,83,203"/>
+        <Button x:Name="btnLoad" Content="Button" HorizontalAlignment="Left" Margin="369,86,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="487"/>
+        <Button x:Name="btnSimulate" Content="Симуляция работы" HorizontalAlignment="Left" Margin="874,86,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="511"/>
     </Grid>
 </Window>
