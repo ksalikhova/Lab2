@@ -89,7 +89,7 @@ namespace WpfApp1
                     standartOfWorkingHours=standartOfHourlyWorkingHours
                 }) ;
 
-
+            
         }
 
         private void AddComissionWorker()

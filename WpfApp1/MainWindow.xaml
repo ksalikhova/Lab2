@@ -15,11 +15,11 @@
         <WrapPanel x:Name="wrapPanel"    Orientation="Vertical" Background="Gray" HorizontalAlignment="Left" Height="245" Margin="45,43,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="300">
             <StackPanel Orientation="Horizontal">
                 <Label x:Name="lbl" Content="Имя" Width="168" VerticalAlignment="Center"/>
-                <TextBox x:Name="hourlyNameBox" TextWrapping="Wrap" Width="120" Height="21" VerticalAlignment="Center" HorizontalAlignment="Center" TextChanged="hourlyNameBox_TextChanged"/>
+                <TextBox x:Name="hourlyNameBox" TextWrapping="Wrap" Width="120" Height="21" VerticalAlignment="Center" HorizontalAlignment="Center"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                 <Label Content="Пол"     RenderTransformOrigin="-4.869,-0.076" Width="168"/>
-                <ComboBox  Name="HourlyGenderComboBox"   Width="120" SelectionChanged="HourlyGenderComboBox_SelectionChanged">
+                <ComboBox  Name="HourlyGenderComboBox"   Width="120">
                     <Button Content="Female" Foreground="Black" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" IsEnabled="False"/>
                     <Button Content="Male" Foreground="Black" HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Center" IsEnabled="False"/>
                 </ComboBox>
@@ -69,7 +69,7 @@
             </StackPanel>
             <Button x:Name="btnFireComissionWorker" Content="Уволить" Width="108" Height="30"  />
         </WrapPanel>
-        <DataGrid Grid.RowSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="369,119,612,203"/>
+        <DataGrid Name="allWorkers" AutoGenerateColumns="True" Grid.RowSpan="2" Margin="369,119,612,203"/>
         <DataGrid Grid.RowSpan="2" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="874,119,83,203"/>
         <Button x:Name="btnLoad" Content="Button" HorizontalAlignment="Left" Margin="369,86,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="487"/>
         <Button x:Name="btnSimulate" Content="Симуляция работы" HorizontalAlignment="Left" Margin="874,86,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="511"/>
