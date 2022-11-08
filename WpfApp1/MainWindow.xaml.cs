@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,6 +34,7 @@ namespace WpfApp1
 
         public List<HourlyWageWorker> hourlyWorkers = new List<HourlyWageWorker>();
         public List<ComissionWageWorker> comissionWorkers = new List<ComissionWageWorker>();
+        ObservableCollection<HourlyWageWorker> workers = new ObservableCollection<HourlyWageWorker>();
 
         public MainWindow()
         {
@@ -41,40 +43,63 @@ namespace WpfApp1
 
         private void btnAddComissionWorker_Click(object sender, RoutedEventArgs e)
         {
-            comissionName = comissionNameBox.Text;
-            comissionGender = ComissionGenderComboBox.Text;
-            comissionSalary = NumberCheck(SalaryBox);
-            comissionPercent = NumberCheck(percentBox);
+            if (CheckComissionEquilName() && NumberCheck(SalaryBox) && NumberCheck(percentBox) && CheckNullString(comissionNameBox.Text) && CheckNullString(ComissionGenderComboBox.Text))
+            {
+                comissionName = comissionNameBox.Text;
+                comissionGender = ComissionGenderComboBox.Text;
+                comissionSalary = Convert.ToInt32(SalaryBox.Text);
+                comissionPercent = Convert.ToInt32(percentBox.Text);
 
-            AddComissionWorker();
+                AddComissionWorker();
+            }
         }
 
         private void btnAddHourlyWorker_Click(object sender, RoutedEventArgs e)
         {
-            hourlyName = hourlyNameBox.Text;
-            hourlyGender = HourlyGenderComboBox.Text;
-            normalHourlySalary = NumberCheck(normalSalaryBox);
-            overtimeHourlySalary = NumberCheck(overtimeSalaryBox);
-            standartOfHourlyWorkingHours = NumberCheck(standartHoursBox);
+            if (CheckHourlyEquilName() && NumberCheck(normalSalaryBox) && NumberCheck(overtimeSalaryBox) && NumberCheck(standartHoursBox) && CheckNullString(hourlyNameBox.Text) && CheckNullString(HourlyGenderComboBox.Text))
+            {
+                hourlyName = hourlyNameBox.Text;
+                hourlyGender = HourlyGenderComboBox.Text;
+                normalHourlySalary = Convert.ToInt32(normalSalaryBox.Text);
+                overtimeHourlySalary = Convert.ToInt32(overtimeSalaryBox.Text);
+                standartOfHourlyWorkingHours = Convert.ToInt32(standartHoursBox.Text);
 
-            AddHourlyWorker();
+                AddHourlyWorker();
+            }
         }
 
-        private int NumberCheck(TextBox textBox)
+        private bool NumberCheck(TextBox textBox)
         {
+            if (String.IsNullOrEmpty(textBox.Text)) 
+            {
+                MessageBox.Show("Неправильный ввод");
+                return false;
+            }
+
             foreach (var symbol in textBox.Text)
             {
                 if (!char.IsDigit(symbol))
                 {
                     MessageBox.Show("Неправильный ввод");
-                    return 1;
+                    return false;
                 }
             }
 
-            if (Convert.ToInt32(textBox.Text) != 0) return Convert.ToInt32(textBox.Text);
+            if (Convert.ToInt32(textBox.Text) != 0) return true;
 
             MessageBox.Show("Неправильный ввод");
-            return 1;
+            return false;
+        }
+
+        private bool CheckNullString(string str)
+        {
+            if (String.IsNullOrEmpty(str))
+            {
+                MessageBox.Show("Строка не может быть пустой");
+                return false;
+            }
+
+            return true;
         }
 
         private void AddHourlyWorker()
@@ -89,7 +114,7 @@ namespace WpfApp1
                     standartOfWorkingHours=standartOfHourlyWorkingHours
                 }) ;
 
-            
+            allWorkers.Items.Add(new { Name = hourlyWorkers[hourlyWorkers.Count -1 ].fullName } );
         }
 
         private void AddComissionWorker()
@@ -102,6 +127,37 @@ namespace WpfApp1
                     salary = comissionSalary,
                     percentage =comissionPercent
                 });
+
+            allWorkers.Items.Add(new {Name = comissionWorkers[comissionWorkers.Count -1].fullName } );
+        }
+
+        private bool CheckHourlyEquilName()
+        {
+            for (int index = 0; index < hourlyWorkers.Count; index++)
+            {
+                if (hourlyName == hourlyWorkers[index].fullName)
+                {
+                    MessageBox.Show("Нельзя вводить одинаковые имена");
+
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private bool CheckComissionEquilName()
+        {
+            for (int index = 0; index < comissionWorkers.Count; index++)
+            {
+                if (comissionName == comissionWorkers[index].fullName)
+                {
+                    MessageBox.Show("Нельзя вводить одинаковые имена");
+
+                    return false;
+                }
+            }
+
+            return true;
         }
     }
 }
