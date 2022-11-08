@@ -22,14 +22,17 @@ namespace WpfApp1
     {
         public string hourlyName;
         public string hourlyGender;
-        public int normalSalary;
-        public int overtimeSalary;
-        public int standartOfWorkingHours;
+        public int normalHourlySalary;
+        public int overtimeHourlySalary;
+        public int standartOfHourlyWorkingHours;
 
         public string comissionName;
         public string comissionGender;
-        public int salary;
-        public int percent;
+        public int comissionSalary;
+        public int comissionPercent;
+
+        public List<HourlyWageWorker> hourlyWorkers = new List<HourlyWageWorker>();
+        public List<ComissionWageWorker> comissionWorkers = new List<ComissionWageWorker>();
 
         public MainWindow()
         {
@@ -40,17 +43,21 @@ namespace WpfApp1
         {
             comissionName = comissionNameBox.Text;
             comissionGender = ComissionGenderComboBox.Text;
-            salary = NumberCheck(SalaryBox);
-            percent = NumberCheck(percentBox);
+            comissionSalary = NumberCheck(SalaryBox);
+            comissionPercent = NumberCheck(percentBox);
+
+            AddComissionWorker();
         }
 
         private void btnAddHourlyWorker_Click(object sender, RoutedEventArgs e)
         {
             hourlyName = hourlyNameBox.Text;
             hourlyGender = HourlyGenderComboBox.Text;
-            normalSalary = NumberCheck(normalSalaryBox);
-            overtimeSalary = NumberCheck(overtimeSalaryBox);
-            standartOfWorkingHours = NumberCheck(standartHoursBox);
+            normalHourlySalary = NumberCheck(normalSalaryBox);
+            overtimeHourlySalary = NumberCheck(overtimeSalaryBox);
+            standartOfHourlyWorkingHours = NumberCheck(standartHoursBox);
+
+            AddHourlyWorker();
         }
 
         private int NumberCheck(TextBox textBox)
@@ -68,6 +75,33 @@ namespace WpfApp1
 
             MessageBox.Show("Неправильный ввод");
             return 1;
+        }
+
+        private void AddHourlyWorker()
+        {
+            hourlyWorkers.Add(
+                new HourlyWageWorker()
+                {
+                    fullName = hourlyName,
+                    gender = hourlyGender,
+                    normalSalary = normalHourlySalary,
+                    overtimeSalary = overtimeHourlySalary,
+                    standartOfWorkingHours=standartOfHourlyWorkingHours
+                }) ;
+
+
+        }
+
+        private void AddComissionWorker()
+        {
+            comissionWorkers.Add(
+                new ComissionWageWorker()
+                {
+                    fullName = comissionName,
+                    gender = comissionGender,
+                    salary = comissionSalary,
+                    percentage =comissionPercent
+                });
         }
     }
 }
