@@ -14,10 +14,6 @@ namespace WpfApp1
         public int overtimeSalary { get; set; }
         public int standartOfWorkingHours { get; set; }
 
-
-
-        
-
         public void Work(int hours)
         {
             hoursWorked += hours % 24;

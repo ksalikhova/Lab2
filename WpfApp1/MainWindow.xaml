@@ -70,7 +70,7 @@
                 <Label x:Name="fireName" Content="Имя" Width="174" VerticalAlignment="Center" Margin="0,10,0,0" FontSize="14"/>
                 <TextBox x:Name="fireNameBox" TextWrapping="Wrap" Width="174" Height="23" VerticalAlignment="Center" Margin="0,10,0,0"/>
             </StackPanel>
-            <Button x:Name="btnFireComissionWorker" Content="Уволить" Width="108" Height="30" Margin="0,10,0,0"  />
+            <Button x:Name="btnFireWorker" Content="Уволить" Width="108" Height="30" Margin="0,10,0,0" Click="btnFireWorker_Click" />
         </WrapPanel>
         <DataGrid x:Name="allWorkers" Grid.RowSpan="2" Margin="432,86,591,157" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False">
             <DataGrid.Columns>
@@ -79,5 +79,6 @@
         </DataGrid>
         <DataGrid Grid.RowSpan="2"  Margin="900,119,83,157"/>
         <Button x:Name="btnSimulate" Content="Симуляция работы" Margin="900,86,83,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+        <Button x:Name="btnOutputWorkers" Content="Вывод сотрудников" Margin="432,52,591,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="18" Click="OutputWorkers"/>
     </Grid>
 </Window>

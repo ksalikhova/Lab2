@@ -32,6 +32,7 @@ namespace WpfApp1
         public int comissionSalary;
         public int comissionPercent;
 
+        public string fireNameWorker;
         public List<HourlyWageWorker> hourlyWorkers = new List<HourlyWageWorker>();
         public List<ComissionWageWorker> comissionWorkers = new List<ComissionWageWorker>();
         ObservableCollection<HourlyWageWorker> workers = new ObservableCollection<HourlyWageWorker>();
@@ -43,7 +44,7 @@ namespace WpfApp1
 
         private void btnAddComissionWorker_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckComissionEquilName() && NumberCheck(SalaryBox) && NumberCheck(percentBox) && CheckNullString(comissionNameBox.Text) && CheckNullString(ComissionGenderComboBox.Text))
+            if (CheckEquilName(comissionNameBox.Text) && NumberCheck(SalaryBox) && NumberCheck(percentBox) && CheckNullString(comissionNameBox.Text) && CheckNullString(ComissionGenderComboBox.Text))
             {
                 comissionName = comissionNameBox.Text;
                 comissionGender = ComissionGenderComboBox.Text;
@@ -51,12 +52,17 @@ namespace WpfApp1
                 comissionPercent = Convert.ToInt32(percentBox.Text);
 
                 AddComissionWorker();
+
+                comissionNameBox.Text = "";
+                ComissionGenderComboBox.Text = "";
+                SalaryBox.Text = "";
+                percentBox.Text = "";
             }
         }
 
         private void btnAddHourlyWorker_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckHourlyEquilName() && NumberCheck(normalSalaryBox) && NumberCheck(overtimeSalaryBox) && NumberCheck(standartHoursBox) && CheckNullString(hourlyNameBox.Text) && CheckNullString(HourlyGenderComboBox.Text))
+            if (CheckEquilName(hourlyNameBox.Text) && NumberCheck(normalSalaryBox) && NumberCheck(overtimeSalaryBox) && NumberCheck(standartHoursBox) && CheckNullString(hourlyNameBox.Text) && CheckNullString(HourlyGenderComboBox.Text))
             {
                 hourlyName = hourlyNameBox.Text;
                 hourlyGender = HourlyGenderComboBox.Text;
@@ -65,6 +71,12 @@ namespace WpfApp1
                 standartOfHourlyWorkingHours = Convert.ToInt32(standartHoursBox.Text);
 
                 AddHourlyWorker();
+
+                hourlyNameBox.Text = "";
+                HourlyGenderComboBox.Text = "";
+                normalSalaryBox.Text = "";
+                overtimeSalaryBox.Text = "";
+                standartHoursBox.Text = "";
             }
         }
 
@@ -113,8 +125,6 @@ namespace WpfApp1
                     overtimeSalary = overtimeHourlySalary,
                     standartOfWorkingHours=standartOfHourlyWorkingHours
                 }) ;
-
-            allWorkers.Items.Add(new { Name = hourlyWorkers[hourlyWorkers.Count -1 ].fullName } );
         }
 
         private void AddComissionWorker()
@@ -127,37 +137,94 @@ namespace WpfApp1
                     salary = comissionSalary,
                     percentage =comissionPercent
                 });
-
-            allWorkers.Items.Add(new {Name = comissionWorkers[comissionWorkers.Count -1].fullName } );
         }
 
-        private bool CheckHourlyEquilName()
+        private bool CheckEquilName(string name)
         {
             for (int index = 0; index < hourlyWorkers.Count; index++)
             {
-                if (hourlyName == hourlyWorkers[index].fullName)
+                if (name == hourlyWorkers[index].fullName)
                 {
                     MessageBox.Show("Нельзя вводить одинаковые имена");
 
                     return false;
                 }
             }
+
+            for (int index = 0; index < comissionWorkers.Count; index++)
+            {
+                if (name == comissionWorkers[index].fullName)
+                {
+                    MessageBox.Show("Нельзя вводить одинаковые имена");
+
+                    return false;
+                }
+            }
+
             return true;
         }
 
-        private bool CheckComissionEquilName()
+        private void UpdateDataGridHourlyWorker()
         {
-            for (int index = 0; index < comissionWorkers.Count; index++)
+            if (hourlyWorkers.Count != 0)
             {
-                if (comissionName == comissionWorkers[index].fullName)
+                foreach (var worker in hourlyWorkers)
                 {
-                    MessageBox.Show("Нельзя вводить одинаковые имена");
+                    allWorkers.Items.Add(new { Name = hourlyWorkers[hourlyWorkers.Count - 1].fullName });
+                }
+            }
+        }
 
-                    return false;
+        private void UpdateDataGridComissionWorker()
+        {
+            if (comissionWorkers.Count != 0)
+            {
+                foreach (var worker in comissionWorkers)
+                {
+                    allWorkers.Items.Add(new { Name = comissionWorkers[comissionWorkers.Count - 1].fullName });
+                }
+            }
+        }
+
+        private void btnFireWorker_Click(object sender, RoutedEventArgs e)
+        {
+            FireWorker();
+        }
+
+        private bool FireWorker()
+        {
+            fireNameWorker = fireNameBox.Text;
+
+            foreach (var worker in hourlyWorkers)
+            {
+                if (worker.fullName == fireNameWorker)
+                {
+                    hourlyWorkers.Remove(worker);
+                    fireNameBox.Text = "";
+                    return true;
                 }
             }
 
-            return true;
+            foreach (var worker in comissionWorkers)
+            {
+                if (worker.fullName == fireNameWorker) 
+                {
+                    comissionWorkers.Remove(worker);
+                    fireNameBox.Text = "";
+                    return true;
+                }
+            }
+
+            MessageBox.Show("Такого имени нет в списках работников");
+            fireNameBox.Text = "";
+            return false;
+        }
+
+        private void OutputWorkers(object sender, RoutedEventArgs e)
+        {
+            allWorkers.Items.Clear();
+            UpdateDataGridHourlyWorker();
+            UpdateDataGridComissionWorker();
         }
     }
 }
