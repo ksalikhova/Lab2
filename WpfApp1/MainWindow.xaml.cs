@@ -250,17 +250,41 @@ namespace WpfApp1
                 }
             }
 
-            workedDaysCount %= 15;         
+            for (int workedDays = 0; workedDays < days; workedDays++)
+            {
+                foreach (var worker in comissionWorkers)
+                {
+                    //Worker workerReferense = worker;
+
+                    worker.Work(randomNumbers.Next() % MAX_PRICE);
+                }
+
+                workedDaysCount++;
+
+                if (workedDaysCount % WORKING_CYCLE == 0)
+                {
+                    foreach (var worker in comissionWorkers)
+                        expenses += worker.CalculateWage();
+                }
+            }
+
+            workedDaysCount %= 15;
+
+            txtxBlockExpenses.Text = Convert.ToString(expenses);
+            txtBlockWorkedDays.Text =Convert.ToString(workedDaysCount);
+
+
         }
 
-        private void UpdateDataGridWorkSimulator()
-        {
-          
-
-        }
+   
         public int expenses = 0;
         private int workedDaysCount = 0;
         private const int MAX_PRICE = 15000;
         private const int WORKING_CYCLE = 15;
+
+        private void btnSimulate_Click(object sender, RoutedEventArgs e)
+        {
+            SimulateWork();
+        }
     }
 }
