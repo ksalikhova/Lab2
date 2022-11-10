@@ -33,6 +33,6 @@ namespace WpfApp1
         }
 
         private static int goodsSoldSum;
-        private const int MAX_PRICE = 15000;
+        //private const int MAX_PRICE = 15000;
     }
 }

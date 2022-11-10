@@ -72,13 +72,21 @@
             </StackPanel>
             <Button x:Name="btnFireWorker" Content="Уволить" Width="108" Height="30" Margin="0,10,0,0" Click="btnFireWorker_Click" />
         </WrapPanel>
-        <DataGrid x:Name="allWorkers" Grid.RowSpan="2" Margin="432,86,591,157" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False">
+        <DataGrid x:Name="allWorkers" Grid.RowSpan="2" Margin="432,127,591,157" IsSynchronizedWithCurrentItem="False" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Имя" Binding="{Binding Name}" Width="487"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid Grid.RowSpan="2"  Margin="900,119,83,157"/>
-        <Button x:Name="btnSimulate" Content="Симуляция работы" Margin="900,86,83,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
-        <Button x:Name="btnOutputWorkers" Content="Вывод сотрудников" Margin="432,52,591,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="18" Click="OutputWorkers"/>
+        <DataGrid  x:Name="workSimulator" Grid.RowSpan="2"  Margin="900,127,83,157">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Расходы" Binding="{Binding Expenses}" Width="243.5"/>
+                <DataGridTextColumn Header="Отработанные дни" Binding="{Binding WorkedDays}" Width="243.5"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btnSimulate" Content="Симуляция работы"  Margin="1235,89,92,0" Grid.RowSpan="2" VerticalAlignment="Top"/>
+        <Button x:Name="btnOutputWorkers" Content="Вывод сотрудников" Margin="432,52,591,0" Grid.RowSpan="2" VerticalAlignment="Top" Height="29" Click="OutputWorkers"/>
+        <Label x:Name="lblWorkedDays" Content="Количество отработанных дней" HorizontalAlignment="Left" Margin="900,86,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="189"/>
+        <TextBox x:Name="txtDays" HorizontalAlignment="Left" Margin="1094,86,0,0" Grid.RowSpan="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="26"/>
+        <Label x:Name="lblWorkSimulator" Content="Симулятор работы" HorizontalAlignment="Left" Margin="900,52,0,0" Grid.RowSpan="2" VerticalAlignment="Top" Width="485" Height="29" Background="#FFDDDDDD"/>
     </Grid>
 </Window>

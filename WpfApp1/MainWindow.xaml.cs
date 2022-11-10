@@ -226,5 +226,41 @@ namespace WpfApp1
             UpdateDataGridHourlyWorker();
             UpdateDataGridComissionWorker();
         }
+
+        private void SimulateWork()
+        {
+            int days = Convert.ToInt32(txtDays.Text);            
+            var randomNumbers = new Random(Environment.TickCount);
+            
+            for (int workedDays = 0; workedDays < days; workedDays++)
+            {
+                foreach (var worker in hourlyWorkers)
+                {
+                    //Worker workerReferense = worker;
+
+                    worker.Work(randomNumbers.Next() % MAX_PRICE);
+                }
+
+                workedDaysCount++;
+
+                if (workedDaysCount % WORKING_CYCLE == 0)
+                {
+                    foreach (var worker in hourlyWorkers)
+                        expenses += worker.CalculateWage();
+                }
+            }
+
+            workedDaysCount %= 15;         
+        }
+
+        private void UpdateDataGridWorkSimulator()
+        {
+          
+
+        }
+        public int expenses = 0;
+        private int workedDaysCount = 0;
+        private const int MAX_PRICE = 15000;
+        private const int WORKING_CYCLE = 15;
     }
 }
